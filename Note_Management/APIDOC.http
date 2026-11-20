@@ -1,0 +1,141 @@
+
+#REGISTRATIONVIEW
+#registers users
+###
+POST http://127.0.0.1:8000/api/register/
+Content-Type: application/json
+
+{
+    "username":"Arshit",
+    "email":"arshit@gmail.com",
+    "password":"arshit@123"
+}
+
+#LOGIN
+#we get a token 
+###
+POST http://127.0.0.1:8000/login/
+Content-Type: application/json
+
+{
+    "username":"Arshit",
+    "password":"arshit@123"
+}
+
+#NOTESLISTCREATEVIEW
+#get token from above post and cop and past it in below
+###
+GET http://127.0.0.1:8000/api/notes/
+Accept: application/json
+Authorization :Token 91416ec0997d4a7899f4b48c1e4bda6256c848bb
+
+###
+POST http://127.0.0.1:8000/api/notes/
+Content-Type: application/json
+Authorization :Token 91416ec0997d4a7899f4b48c1e4bda6256c848bb
+#user1,id=1=automatic
+{
+    "title":"Introduction to Python",
+    "description":"Python is an highlevel langauge"
+}
+
+#RETRIEVEUPDATEDELETE
+
+###
+GET http://127.0.0.1:8000/api/notes/1/
+Accept: application/json
+Authorization :Token 91416ec0997d4a7899f4b48c1e4bda6256c848bb
+
+
+###
+PUT http://127.0.0.1:8000/api/notes/1/
+Content-Type: application/json
+Authorization :Token 91416ec0997d4a7899f4b48c1e4bda6256c848bb
+
+{
+    "title":"Introduction to Java",
+    "description":"Java is an highlevel langauge"
+}
+
+###
+DELETE http://127.0.0.1:8000/api/notes/1/
+Authorization :Token 91416ec0997d4a7899f4b48c1e4bda6256c848bb
+
+#LOGOUT
+
+###
+POST http://127.0.0.1:8000/api/logout/
+Content-Type: application/json
+Authorization :Token 91416ec0997d4a7899f4b48c1e4bda6256c848bb
+
+#after logouting every token above will be useless
+
+
+#JWTLOGIN
+#refresh and access tokes is the output
+###
+POST http://127.0.0.1:8000/api/jwt_login/
+Content-Type: application/json
+
+{
+    "username":"Arshit",
+    "password":"arshit@123"
+}
+
+
+#TASK MANAGEMENT
+#TASK RGISTRATION
+
+
+#the bearer token is taken from above post jwt login from access not refresh
+###
+POST http://127.0.0.1:8000/task/register/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTYyMTU0LCJpYXQiOjE3OTUxNjE4NTQsImp0aSI6IjQwNjRiZThkNTEwZjQ1MDU4MjhkNWRmYjI2NmFkYzAxIiwidXNlcl9pZCI6IjEifQ.13aKpM_DVwLjWARP4dKZqDOhW6zmiXMRl_UA0q-OftU
+
+{
+    "title":"Prime Number",
+    "description":"Python pgm to find Prime number",
+    "due_date":"2026-11-28"
+
+}
+
+###
+GET http://127.0.0.1:8000/task/register/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTYyMTU0LCJpYXQiOjE3OTUxNjE4NTQsImp0aSI6IjQwNjRiZThkNTEwZjQ1MDU4MjhkNWRmYjI2NmFkYzAxIiwidXNlcl9pZCI6IjEifQ.13aKpM_DVwLjWARP4dKZqDOhW6zmiXMRl_UA0q-OftU
+
+#as we know when we logout ,we have to create to again use post tp create access token
+#so we use the acccess token in bearer andrefreshoken to get anothr access token
+###
+POST http://127.0.0.1:8000/api/refresh/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTYyOTE5LCJpYXQiOjE3OTUxNjI2MTksImp0aSI6IjNiZTUwNmRkNzU1ZjQ3YTdhZjYyZmU2ZjRhNjlmNmFjIiwidXNlcl9pZCI6IjEifQ.FKoPVzJ6KlnSgPAItAGki9FhQwgsSJyQmlncPjP7SFM
+
+{
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTI0OTAxOSwiaWF0IjoxNzk1MTYyNjE5LCJqdGkiOiJiMzRjNGIyMmQ0MmQ0YTdlOGY5MTZjYjYyZTVmYTI1YSIsInVzZXJfaWQiOiIxIn0.ac3KL0CEQPNhuDzVYJ6g9bq5SR0EKucZ_B0cGmqLwA4"
+}
+
+
+#RETRIEVE DELETE VIEW with new access token when we get using refresh
+###
+GET http://127.0.0.1:8000/task/1/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTY0MzgwLCJpYXQiOjE3OTUxNjQwODAsImp0aSI6IjBiMTczNjE0MzU4MjRkYTBhZDZmOTk5MjE4OWY5ZjM1IiwidXNlcl9pZCI6IjEifQ.Pnknl9NmJ5aWs2_qLBexFxvdcv7DOexPJdW5F5fdRok
+###
+PUT  http://127.0.0.1:8000/task/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTY0MTYyLCJpYXQiOjE3OTUxNjM4NjIsImp0aSI6ImU3ZjNmZmIxZWQ1YTQ1MDk5NTg4NWViMzVlNjU3ZDExIiwidXNlcl9pZCI6IjEifQ.jPoDjOwB2ZrrSo0x0j3h-b4-dMovdC6rEMf8A6fAN4o
+
+{
+    "title": "Factorial Program",
+    "description": "Python program to calculate factorial",
+    "due_date": "2026-11-28",
+    "status": "Completed"
+}
+
+###
+DELETE http://127.0.0.1:8000/task/2/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTY0MTYyLCJpYXQiOjE3OTUxNjM4NjIsImp0aSI6ImU3ZjNmZmIxZWQ1YTQ1MDk5NTg4NWViMzVlNjU3ZDExIiwidXNlcl9pZCI6IjEifQ.jPoDjOwB2ZrrSo0x0j3h-b4-dMovdC6rEMf8A6fAN4o
+
+#we have to post refresh every time to get access token , if we dont take token the session expires doing only one task
