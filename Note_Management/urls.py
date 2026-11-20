@@ -31,4 +31,5 @@ urlpatterns = [
     path('api/refresh/',TokenRefreshView.as_view()),
     path('task/register/',views.TaskListCreateView.as_view()),
     path('task/<int:pk>/',views.TaskRetrieveDeleteView.as_view()),
+    path('jwt/logout/',views.JWT_LOGOUT.as_view()),
 ]

@@ -110,10 +110,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 POST http://127.0.0.1:8000/api/refresh/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTYyOTE5LCJpYXQiOjE3OTUxNjI2MTksImp0aSI6IjNiZTUwNmRkNzU1ZjQ3YTdhZjYyZmU2ZjRhNjlmNmFjIiwidXNlcl9pZCI6IjEifQ.FKoPVzJ6KlnSgPAItAGki9FhQwgsSJyQmlncPjP7SFM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTY2NjUyLCJpYXQiOjE3OTUxNjYzNTIsImp0aSI6ImRiNzhhMTQzYWM1NjRhNWE4YTllYmQ2NzlmM2QxYjdlIiwidXNlcl9pZCI6IjEifQ.4ohIqkEdYkvHU5oen-aWFmEWTT3wBROOcnFYp3rw2Zo
 
 {
-    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTI0OTAxOSwiaWF0IjoxNzk1MTYyNjE5LCJqdGkiOiJiMzRjNGIyMmQ0MmQ0YTdlOGY5MTZjYjYyZTVmYTI1YSIsInVzZXJfaWQiOiIxIn0.ac3KL0CEQPNhuDzVYJ6g9bq5SR0EKucZ_B0cGmqLwA4"
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTI1Mjc1MiwiaWF0IjoxNzk1MTY2MzUyLCJqdGkiOiIxZDRlYjI3OThmMmM0NzMxYWY2MTk1MDE4OWQ5MGI1MyIsInVzZXJfaWQiOiIxIn0.fX5-LAyfQbz1ucV7N2OuuYfp0q04aAVt2Nj8d3gsC7Q"
 }
 
 
@@ -125,7 +125,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 PUT  http://127.0.0.1:8000/task/1/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTY0MTYyLCJpYXQiOjE3OTUxNjM4NjIsImp0aSI6ImU3ZjNmZmIxZWQ1YTQ1MDk5NTg4NWViMzVlNjU3ZDExIiwidXNlcl9pZCI6IjEifQ.jPoDjOwB2ZrrSo0x0j3h-b4-dMovdC6rEMf8A6fAN4o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTY2NTg1LCJpYXQiOjE3OTUxNjYyODUsImp0aSI6ImI2Zjg4MGQ3ZDlhZTQzOTFiOGNjNDYwYWQzNDhmNzM4IiwidXNlcl9pZCI6IjEifQ.iLtKDgVxUVGu4rp3n38-sgj0iRTefjlQDzyYesQApFQ
 
 {
     "title": "Factorial Program",
@@ -139,3 +139,15 @@ DELETE http://127.0.0.1:8000/task/2/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTY0MTYyLCJpYXQiOjE3OTUxNjM4NjIsImp0aSI6ImU3ZjNmZmIxZWQ1YTQ1MDk5NTg4NWViMzVlNjU3ZDExIiwidXNlcl9pZCI6IjEifQ.jPoDjOwB2ZrrSo0x0j3h-b4-dMovdC6rEMf8A6fAN4o
 
 #we have to post refresh every time to get access token , if we dont take token the session expires doing only one task
+
+
+#LOGOUT
+#to work this we have to add blackout in installed apps
+###
+POST http://127.0.0.1:8000/jwt/logout/ 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTY2Njg1LCJpYXQiOjE3OTUxNjYzODUsImp0aSI6IjE1YWZhYTRhM2Q3NTQ4MjY5MDQ0NTEzYjBhM2JkZjgzIiwidXNlcl9pZCI6IjEifQ.pYPJu0xL5UHmJTy6ieDP5l0kxCPaccyMT4eqyZEPgvI
+
+{
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTI1Mjc1MiwiaWF0IjoxNzk1MTY2MzUyLCJqdGkiOiIxZDRlYjI3OThmMmM0NzMxYWY2MTk1MDE4OWQ5MGI1MyIsInVzZXJfaWQiOiIxIn0.fX5-LAyfQbz1ucV7N2OuuYfp0q04aAVt2Nj8d3gsC7Q"
+}
